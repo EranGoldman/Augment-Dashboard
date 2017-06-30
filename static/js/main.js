@@ -6,10 +6,13 @@
 $(document).ready(function() {
     $.getJSON("http://127.0.0.1:5000/conversations", function(json) {
         console.log(json);
-
         var dataSet = json;
-
-
+        var count2 = 0;
+        while (dataSet[count2]) {
+            count2++;
+        }
+        $('.title3').html(count2);
+        console.log("got past");
         $('table#tableID').DataTable({
             "paging": true,
             "processing": true,
