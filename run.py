@@ -15,6 +15,12 @@ mainData = None
 def hello_world():
     return render_template("index.html")
 
+@app.route('/reload')
+def reload_data():
+    global mainData
+    mainData = None
+    return render_template("index.html")
+
 @app.route('/conversations')
 def get_data():
     global mainData
