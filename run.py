@@ -3,7 +3,7 @@ app = Flask(__name__)
 import dynamodb
 # import subprocess
 
-
+mainData = None
 
 # serveCommand = open("serve.py", "w+")
 # dynamodb.download()
@@ -17,7 +17,10 @@ def hello_world():
 
 @app.route('/conversations')
 def get_data():
-    return dynamodb.download()
+    global mainData
+    if mainData == None:
+        mainData = dynamodb.download()
+    return mainData
 
 @app.route('/conversations/<id>')
 def load_conversation(id):

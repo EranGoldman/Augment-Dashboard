@@ -30,7 +30,7 @@ $(document).ready(function() {
           console.log(data);
           var sessionID = data["engagementId"];
           var sessionViewURL = "http://127.0.0.1:5000/conversations/" + sessionID;
-          alert(sessionViewURL);
+        //   alert(sessionViewURL);
           window.open (sessionViewURL,'_self',false)
         })
         // addRowHandlers();
