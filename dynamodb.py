@@ -10,23 +10,6 @@ def download():
 	dynamodb = boto3.resource('dynamodb',region_name='us-west-2')
 	table = dynamodb.Table('dev_engagement_history')
 
-
-	# with open('data.json', 'w') as outfile:
-	#     response = table.scan(
-	#         FilterExpression=Attr('agentId').eq('176680014') & Attr('startTime').gt('2017-06-20 15:01:08.834+0000'),
-	#     )
-	#     items = response['Items']
-	#     json.dump(items, outfile)
-	#     while 'LastEvaluatedKey' in response:
-	#         response = table.scan(
-	#             ExclusiveStartKey=response['LastEvaluatedKey'],
-	#             FilterExpression=Attr('agentId').eq('176680014') & Attr('startTime').gt('2017-06-20 15:01:08.834+0000'),
-	#         )
-	#         print "hello \n"
-	#         print(response)
-	#         items = response['Items']
-	#         json.dump(items, outfile)
-
 	retries = 0
 
 	with io.open('data.json', 'w', encoding='utf8') as outfile:
@@ -69,7 +52,6 @@ def download():
 
 
 def download_session(str):
-
 	print "starting session query script \n"
 	dynamodb = boto3.resource('dynamodb',region_name='us-west-2')
 	table = dynamodb.Table('dev_augment_response')
