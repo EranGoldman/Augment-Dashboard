@@ -40,7 +40,7 @@ function addRowHandlers() {
                                         var cell = row.getElementsByTagName("td")[1];
                                         var id = cell.innerHTML;
                                         var sessionViewURL = "http://127.0.0.1:5000/conversations/" + id;
-                                        // alert(sessionViewURL);
+                                                            // alert(sessionViewURL);
                                         window.open (sessionViewURL,'_self',false)
                                  };
             };

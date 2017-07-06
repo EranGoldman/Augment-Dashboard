@@ -42,7 +42,6 @@ def download():
 	        finalExport = finalExport + "\n" + first
 
 	    print "doing one scan iteration... \n"
-	    print(finalExport)
 	    while 'LastEvaluatedKey' in response:
 	        try:
 	            response = table.scan(
@@ -71,7 +70,7 @@ def download():
 
 def download_session(str):
 
-	print "starting query script \n"
+	print "starting session query script \n"
 	dynamodb = boto3.resource('dynamodb',region_name='us-west-2')
 	table = dynamodb.Table('dev_augment_response')
 
@@ -90,7 +89,7 @@ def download_session(str):
 	        finalExport = finalExport + "\n" + first
 
 	    print "doing one scan iteration... \n"
-	    print(finalExport)
+	    # print(finalExport)
 	    while 'LastEvaluatedKey' in response:
 	        try:
 	            response = table.scan(
