@@ -5,6 +5,8 @@ import simplejson as json
 import io
 import time
 def download():
+
+	print "starting query script \n"
 	dynamodb = boto3.resource('dynamodb',region_name='us-west-2')
 	table = dynamodb.Table('dev_engagement_history')
 
@@ -39,7 +41,7 @@ def download():
 	    if first: #if first scan contains anything at all, we want to include it
 	        finalExport = finalExport + "\n" + first
 
-	    print "hello \n"
+	    print "doing one scan iteration... \n"
 	    print(finalExport)
 	    while 'LastEvaluatedKey' in response:
 	        try:
@@ -60,12 +62,58 @@ def download():
 	            if len(finalExport) != 1: #this just checks for the case where first scan was empty, we don't want to add a comma
 	                finalExport = finalExport +  "," + "\n"
 	            finalExport = finalExport + nextScan
-	        print "hello \n"
+	        print "doing one scan iteration...  \n"
 	    finalExport = finalExport + "]"
 	    outfile.write(finalExport.decode('unicode-escape'))
 	return finalExport
 
 
+
+def download_session(str):
+
+	print "starting query script \n"
+	dynamodb = boto3.resource('dynamodb',region_name='us-west-2')
+	table = dynamodb.Table('dev_augment_response')
+
+	retries = 0
+
+	with io.open('data.json', 'w', encoding='utf8') as outfile:
+	    finalExport = "[" #outside bracket
+	    response = table.scan(
+	        FilterExpression=Attr('engagementId').eq(str),
+	    )
+	    items = response['Items']
+	    first = json.dumps(items) #firstScan
+	    if first.startswith('[') and first.endswith(']'):
+	        first = first[1:-1] #strips outside brackets
+	    if first: #if first scan contains anything at all, we want to include it
+	        finalExport = finalExport + "\n" + first
+
+	    print "doing one scan iteration... \n"
+	    print(finalExport)
+	    while 'LastEvaluatedKey' in response:
+	        try:
+	            response = table.scan(
+	                ExclusiveStartKey=response['LastEvaluatedKey'],
+	                FilterExpression=Attr('engagementId').eq(str),
+	            )
+	        except dynamodb2.exceptions.ProvisionedThroughputExceededException:
+	            sleepTime = min(60, (2.**retries)/10.)
+	            print 'Sleeping for %.02f secs' % sleepTime
+	            time.sleep(sleepTime)
+	            retries += 1 if retries < 10 else 0
+	        items2 = response['Items']
+	        nextScan = json.dumps(items2)
+	        if nextScan.startswith('[') and nextScan.endswith(']'):
+	            nextScan = nextScan[1:-1] #strips outside brackets
+	        if nextScan: #if next scan contains anything at all, we want to include it
+	            if len(finalExport) != 1: #this just checks for the case where first scan was empty, we don't want to add a comma
+	                finalExport = finalExport +  "," + "\n"
+	            finalExport = finalExport + nextScan
+	        print "doing one scan iteration...  \n"
+	    finalExport = finalExport + "]"
+	    outfile.write(finalExport.decode('unicode-escape'))
+	return finalExport
 
 
 

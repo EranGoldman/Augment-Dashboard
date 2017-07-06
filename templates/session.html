@@ -20,10 +20,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
 
-    <!-- <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet"> -->
-
-
-
 
 </head>
 <body>
@@ -33,7 +29,7 @@
 
     <div class="header-container">
         <header class="wrapper clearfix">
-            <h1 class="title">DASHBOARD</h1>
+            <h1 class="title">SESSION {{id}}</h1>
             <nav>
                 <ul>
                     <li><a href="#"></a></li>
@@ -54,9 +50,7 @@
                         <table id = "tableID" class = "display compact nowrap">
                             <thead>
                             <tr>
-                              <th>Agent</th>
-                              <th>Conversation</th>
-                              <th>Length</th>
+                              <th>State</th>
                               <th>Date</th>
                             </tr>
                             </thead>
@@ -71,7 +65,7 @@
                     <p></p>
                 </header>
                 <section>
-                    <h2>Weekly Statistics</h2>
+                    <h2></h2>
                     <div style="height:400px;">
                     </div>
                     <p></p>
@@ -79,7 +73,7 @@
             </article>
 
             <aside>
-                <h3 class ="title2">AUGMENTED CHATS TODAY</h3>
+                <h3 class ="title2">TOTAL NUMBER OF STATES</h3>
                 <div  class="totalChats">
                     <h3 class ="title3">NUM</h3>
                 </div>
@@ -96,7 +90,7 @@
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
     <!-- <script src="js/main.js"></script> -->
-    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <script src="{{url_for('static', filename='js/session.js')}}"></script>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

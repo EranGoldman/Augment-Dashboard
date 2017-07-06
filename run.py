@@ -19,6 +19,14 @@ def hello_world():
 def get_data():
     return dynamodb.download()
 
+@app.route('/conversations/<id>')
+def load_conversation(id):
+    return  render_template("session.html", id = id)
+
+@app.route('/conversations/<sessionID>/get')
+def get_conversation(sessionID):
+    return dynamodb.download_session(sessionID)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
