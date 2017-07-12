@@ -1,14 +1,16 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
-
-
+td {
+    word-wrap:break-word;
+}
 /*
  * Table styles
  */
 table.dataTable {
   width: 100%;
+  table-layout:fixed
   margin: 0 auto;
   clear: both;
-  border-collapse: separate;
+  /*border-collapse: separate;*/
   border-spacing: 0;
   /*
    * Header and footer styles
@@ -55,6 +57,14 @@ table.dataTable {
       background-color: #b0bed9; }
   table.dataTable tbody th,
   table.dataTable tbody td {
+    overflow: hidden;
+    word-break: break-word;
+    max-width: 0;
+    padding: 8px 10px; }
+  #stack table.dataTable tbody td {
+    overflow: hidden;
+    max-width: 0;
+    word-break: break-word;
     padding: 8px 10px; }
   table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
     border-top: 1px solid white; }
@@ -78,11 +88,11 @@ table.dataTable {
   table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
     background-color: #cd2c24;
     color: white;
-    font-weight: 600;}
+    font-weight: 400;}
     table.dataTable.hover tbody tr:hover.selected, table.dataTable.display tbody tr:hover.selected {
       background-color: #cd2c24;
         color: white;
-    font-weight: 600;}
+    font-weight: 400;}
   table.dataTable.order-column tbody tr > .sorting_1,
   table.dataTable.order-column tbody tr > .sorting_2,
   table.dataTable.order-column tbody tr > .sorting_3, table.dataTable.display tbody tr > .sorting_1,
@@ -122,7 +132,7 @@ table.dataTable {
   table.dataTable.display tbody tr:hover > .sorting_1, table.dataTable.order-column.hover tbody tr:hover > .sorting_1 {
     background-color: #cd2c24;
     color: white;
-    font-weight: 600;}
+    font-weight: 400;}
   table.dataTable.display tbody tr:hover > .sorting_2, table.dataTable.order-column.hover tbody tr:hover > .sorting_2 {
     background-color: #ebebeb; }
   table.dataTable.display tbody tr:hover > .sorting_3, table.dataTable.order-column.hover tbody tr:hover > .sorting_3 {

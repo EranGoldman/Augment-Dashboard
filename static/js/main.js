@@ -16,12 +16,32 @@ $(document).ready(function() {
         var table = $('table#tableID').DataTable({
             "paging": true,
             "processing": true,
+            "order": [ 3, 'desc' ],
+            "nowrap": true,
             // "ajax": '../DynamoDB/data.json',
             "data": dataSet,
+            "columnDefs" : [ {
+                    targets: 0,
+                    render: function ( data, type, row )
+                    {
+                        return type === 'display' && data.length > 5 ?
+                            data.substr( 0, 5 ) +'' :
+                            data;
+                    }
+                    }],
             "columns": [
-            { "data": "agentFullName" },
-            { "data": "engagementId" },
-            { "data": "chatLines" },
+            {
+                "data": "agentFullName",
+                "width": "40px"
+            },
+            {
+                "data": "engagementId",
+                "width" : "160px"
+            },
+            {
+                 "data": "chatLines",
+                 "width" : "10%"
+            },
             { "data": "startTime" },
             ]
         });
@@ -29,11 +49,12 @@ $(document).ready(function() {
           var data = table.row( this ).data();
           console.log(data);
           var sessionID = data["engagementId"];
+          console.log(sessionID);
           var sessionViewURL = "http://127.0.0.1:5000/conversations/" + sessionID;
-        //   alert(sessionViewURL);
+          console.log(sessionViewURL)
           window.open (sessionViewURL,'_self',false)
         })
-        // addRowHandlers();
+
     })
 });
 

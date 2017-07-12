@@ -46,12 +46,21 @@
             <article>
                 <header>
                     <h1></h1>
-                    <div>
-                        <table id = "tableID" class = "display compact nowrap">
+                    <div id = "filters">
+                        <h1>Filter all  states that...</h1>
+                        <form action="">
+                            USE AUGMENT: <input type="checkbox" name="filter" value="useaugment"><br>
+                            DON'T USE AUGMENT: <input type="checkbox" name="filter" value="noaugment"><br>
+                            DETECTED AN INTENT: <input type="checkbox" name="filter" value="haveIntent"><br>
+                            <div id = "log"></div>
+                        </form>
+                    </div>
+                    <div style="width: 600px">
+                        <table id = "tableID2" class = "display compact nowrap stack">
                             <thead>
                             <tr>
                               <th>State</th>
-                              <th>Date</th>
+                              <th word-wrap:break-word;>Text</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -73,7 +82,7 @@
             </article>
 
             <aside>
-                <h3 class ="title2">TOTAL NUMBER OF STATES</h3>
+                <h3 class ="title2">NUMBER OF FILTERED STATES</h3>
                 <div  class="totalChats">
                     <h3 class ="title3">NUM</h3>
                 </div>
@@ -91,6 +100,12 @@
 
     <!-- <script src="js/main.js"></script> -->
     <script src="{{url_for('static', filename='js/session.js')}}"></script>
+    <script type="text/javascript">
+    window.appConfig =
+    {
+        htmlSessionID: '{{id}}'
+    }
+    </script>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

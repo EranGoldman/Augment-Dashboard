@@ -1,1 +1,2 @@
-[]
+[
+{"recommended_confidence": 0.99, "engagementId": "603792634295629203", "recommended_response": "Thank you for your model number.", "line_text": "refrrig model RF265 not mirroring with tv Un58h", "created_on": "2017-07-11 22:55:05.211768", "intent": "modelNumber", "recommended_ask3": " ", "recommended_ask2": " ", "recommended_ask1": " ", "message_id": "4295629203.5"}, {"recommended_confidence": 0.749, "engagementId": "603792634295629203", "recommended_response": " ", "line_text": "almost a new tv", "created_on": "2017-07-11 23:00:55.052499", "intent": "noGeneralized", "recommended_ask3": " ", "recommended_ask2": " ", "recommended_ask1": " ", "message_id": "4295629203.14"}]
